@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sava Funerals – honour with dignity (Winterveld)</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background-color: #f2eee9;
+      color: #1a1e24;
+      line-height: 1.5;
+    }
+
+    :root {
+      --dark-red: #8B0000;
+      --dark-red-hover: #660000;
+      --dark-bg: #11181f;
+      --text-light: #e8e2da;
+    }
+
+    .top-bar {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      padding: 0.7rem 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      border-bottom: 3px solid var(--dark-red);
+      z-index: 10;
+    }
+
+    .top-bar i {
+      color: var(--dark-red);
+      margin-right: 6px;
+    }
+
+    .top-bar a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-right: 15px;
+    }
+
+    .top-bar a:hover {
+      color: var(--dark-red);
+    }
+
+    .contact-header span {
+      margin-right: 18px;
+    }
+
+    /* ----- LOGO AREA with actual image from drive ----- */
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-image {
+      height: 60px;
+      width: auto;
+      border-radius: 30px;
+      border: 2px solid white;
+      background-color: var(--dark-red); /* fallback if image doesn't load */
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text-light);
+    }
+    .logo-text span {
+      color: var(--dark-red);
+      font-weight: 300;
+    }
+
+    .main-nav {
+      background-color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      padding: 0.8rem 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #dad3ca;
+    }
+
+    .nav-links a {
+      color: #1e2a2f;
+      text-decoration: none;
+      margin-right: 2.5rem;
+      font-weight: 500;
+      padding-bottom: 5px;
+    }
+
+    .nav-links a:hover {
+      color: var(--dark-red);
+      border-bottom: 2px solid var(--dark-red);
+    }
+
+    .quote-btn {
+      background-color: var(--dark-red);
+      color: white !important;
+      padding: 0.6rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .quote-btn:hover {
+      background-color: var(--dark-red-hover);
+    }
+
+    /* ===== SLIDESHOW HERO ===== */
+    .hero-slideshow {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      overflow: hidden;
+      border-bottom: 6px solid var(--dark-red);
+    }
+
+    .slideshow-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1.5s ease-in-out;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 5%;
+    }
+
+    .hero-overlay h1 {
+      font-size: 4rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 12px #000;
+    }
+
+    .hero-overlay h1 strong {
+      font-weight: 700;
+      color: #d13b3b;
+    }
+
+    .hero-overlay p {
+      font-size: 1.6rem;
+      font-weight: 300;
+      max-width: 800px;
+      margin-top: 1rem;
+      background: rgba(0,0,0,0.3);
+      padding: 0.3rem 1.5rem;
+      border-radius: 60px;
+    }
+
+    .slideshow-note {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 2;
+      color: white;
+      background: rgba(0,0,0,0.4);
+      padding: 5px 10px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      pointer-events: none;
+    }
+
+    /* ===== SECTIONS WITH FUNERAL BACKGROUND IMAGES ===== */
+    .bg-section {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bg-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .bg-section > * {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* All images replaced with the 5 Pexels URLs provided */
+    #section-services {
+      background-image: url('https://images.pexels.com/photos/7317916/pexels-photo-7317916.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    }
+    #section-plans {
+      background-image: url('https://images.pexels.com/photos/8964078/pexels-photo-8964078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    }
+    #section-groceries {
+      background-image: url('https://images.pexels.com/photos/3648309/pexels-photo-3648309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    }
+    #section-stillborn {
+      background-image: url('https://images.pexels.com/photos/7121497/pexels-photo-7121497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    }
+    #section-stats {
+      background-image: url('https://images.pexels.com/photos/7317666/pexels-photo-7317666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    }
+    #section-contact {
+      background-image: url('https://images.pexels.com/photos/7121497/pexels-photo-7121497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2.5rem 5%;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 300;
+      border-left: 6px solid var(--dark-red);
+      padding-left: 1.5rem;
+      margin: 2.8rem 0 2rem 0;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    /* Form and card styles */
+    .form-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 20px 30px -8px rgba(0,0,0,0.3);
+      border: 1px solid #dccfc2;
+      backdrop-filter: blur(3px);
+      margin-bottom: 2rem;
+    }
+
+    .form-title {
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--dark-red);
+      border-bottom: 2px dashed var(--dark-red);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #2b3a44;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      font-size: 1rem;
+      background: white;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--dark-red);
+      box-shadow: 0 0 0 3px rgba(139,0,0,0.2);
+    }
+
+    .btn {
+      background-color: var(--dark-red);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background-color: var(--dark-red-hover);
+    }
+
+    .btn-payment {
+      background-color: #00695c;
+    }
+    .btn-payment:hover {
+      background-color: #004d40;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25D366;
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 100;
+      transition: 0.3s;
+      border: 3px solid white;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #128C7E;
+      transform: scale(1.1);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      color: var(--dark-red);
+      background: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      transition: 0.2s;
+      border: 2px solid var(--dark-red);
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background: var(--dark-red);
+      color: white;
+      border-color: white;
+    }
+
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .flex-col {
+      flex: 1 1 300px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.2);
+      border: 1px solid #e1d8cf;
+      transition: 0.2s;
+      text-align: center;
+      backdrop-filter: blur(3px);
+    }
+
+    .service-card:hover {
+      border-color: var(--dark-red);
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .service-card i {
+      font-size: 2.8rem;
+      color: var(--dark-red);
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      border-bottom: 2px solid #e7dfd7;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .plan-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+      box-shadow: 0 20px 30px -8px rgba(0,0,0,0.3);
+      border: 1px solid #dccfc2;
+      overflow: hidden;
+      backdrop-filter: blur(3px);
+    }
+
+    .card-header {
+      background: rgba(250, 246, 240, 0.9);
+      padding: 1.8rem 1.8rem 0.8rem;
+      border-bottom: 2px dashed var(--dark-red);
+    }
+
+    .card-header h3 {
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #2b3a44;
+    }
+
+    .card-header .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .card-body {
+      padding: 1.8rem;
+    }
+
+    .card-body ul {
+      list-style: none;
+    }
+
+    .card-body li {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px dotted #eae0d6;
+      padding-bottom: 6px;
+    }
+
+    .card-body i {
+      color: var(--dark-red);
+      width: 24px;
+    }
+
+    .benefit {
+      background: #eae0d6;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      color: #1f2c34;
+    }
+
+    .tile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .tile {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 30px;
+      padding: 1.8rem 1.2rem;
+      border: 1px solid #ddd1c5;
+      text-align: center;
+      backdrop-filter: blur(3px);
+    }
+
+    .tile i {
+      font-size: 2.2rem;
+      color: var(--dark-red);
+    }
+
+    .tile h4 {
+      font-size: 1.7rem;
+      font-weight: 350;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .stats-row {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem 1.5rem;
+      border-radius: 80px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      border: 2px solid var(--dark-red);
+      margin: 3rem 0;
+      backdrop-filter: blur(3px);
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--dark-red);
+    }
+
+    .contact-row {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      padding: 2.8rem 5%;
+      border-radius: 50px 50px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 3rem;
+      border-top: 8px solid var(--dark-red);
+    }
+
+    .contact-item i {
+      color: var(--dark-red);
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-copyright {
+      background-color: #0b1219;
+      color: #a79e94;
+      padding: 1.8rem 5%;
+      font-size: 0.9rem;
+      border-top: 2px solid var(--dark-red);
+    }
+
+    .bg-section {
+      padding: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/27861176925?text=Hello%20Sava%20Funerals%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- TOP BAR with actual logo image -->
+  <div class="top-bar">
+    <div class="logo-area">
+      <!-- 
+        Logo image from Google Drive using thumbnail link.
+        If the image doesn't load, the fallback background color shows.
+      -->
+      <img class="logo-image" src="https://drive.google.com/thumbnail?id=1i3WTg6ui9EMBDDLZzGLU1tEOKEa846Gb&sz=w1000" alt="Sava Funerals Logo">
+      <div class="logo-text">SAVA <span>funerals</span></div>
+    </div>
+    <div class="contact-header">
+      <span><i class="fas fa-phone-alt"></i> +27 861 176 925</span>
+      <span><i class="fas fa-map-marker-alt"></i> Winterveld, 0198</span>
+      <span><i class="fas fa-envelope"></i> info@savafunerals.co.za</span>
+    </div>
+  </div>
+
+  <!-- main navigation -->
+  <div class="main-nav">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Plans</a>
+      <a href="#">Groceries</a>
+      <a href="#">Repatriation</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#" class="quote-btn"><i class="fas fa-headset"></i> 24H · 012 706 0034</a>
+  </div>
+
+  <!-- HERO SLIDESHOW -->
+  <div class="hero-slideshow">
+    <div class="slideshow-bg" id="slideshowBg"></div>
+    <div class="hero-overlay">
+      <h1>with <strong>SAVA FUNERALS</strong><br>you are never alone</h1>
+      <p>Winterveld · repatriation · family cover since 1997</p>
+    </div>
+    <div class="slideshow-note"><i class="fas fa-images"></i> funeral images · silent tribute</div>
+  </div>
+
+  <!-- MAIN CONTENT SECTIONS (existing) -->
+  <section id="section-services" class="bg-section">
+    <div class="container">
+      <div class="section-title">our services · with dignity</div>
+      <div class="service-grid">
+        <div class="service-card"><i class="fas fa-users"></i><h3>Group Family</h3><p>13 members, up to 100 years, 100km radius.</p></div>
+        <div class="service-card"><i class="fas fa-heart"></i><h3>Immediate family</h3><p>Cover for spouse, children, extended.</p></div>
+        <div class="service-card"><i class="fas fa-coffin"></i><h3>Caskets & Coffins</h3><p>Open face, Sava casket, spray options.</p></div>
+        <div class="service-card"><i class="fas fa-dove"></i><h3>Cremation</h3><p>Respectful cremation services.</p></div>
+        <div class="service-card"><i class="fas fa-plane"></i><h3>Repatriation</h3><p>Zim, Lesotho, Botswana, Moz.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-plans" class="bg-section">
+    <div class="container">
+      <div class="section-title">funeral cover options (monthly)</div>
+      <div class="plan-cards">
+        <div class="card"><div class="card-header"><h3>BRONZE A</h3><div class="price">R200 <small>pm</small></div></div><div class="card-body"><ul><li><i class="fas fa-check"></i> Open face coffin</li><li><i class="fas fa-check"></i> Fresh flowers</li><li><i class="fas fa-check"></i> Mortuary, hearse</li><li><i class="fas fa-check"></i> 1 family car, 1 bus</li><li><i class="fas fa-check"></i> 1 tent, 50 chairs</li><li><i class="fas fa-check"></i> Programs 50u, airtime R50</li><li><i class="fas fa-check"></i> Refreshments</li></ul><div class="benefit">13 members · 100km</div></div></div>
+        <div class="card"><div class="card-header"><h3>SILVER B</h3><div class="price">R250 <small>pm</small></div></div><div class="card-body"><ul><li><i class="fas fa-check"></i> Casket</li><li><i class="fas fa-check"></i> Fresh flowers</li><li><i class="fas fa-check"></i> Mortuary, hearse</li><li><i class="fas fa-check"></i> 2 family cars, 1 bus</li><li><i class="fas fa-check"></i> 1 table, 1 tent, 50 chairs</li><li><i class="fas fa-check"></i> Programs 100u, airtime R120</li><li><i class="fas fa-check"></i> Refreshments</li></ul><div class="benefit">13 members · 100km</div></div></div>
+        <div class="card"><div class="card-header"><h3>PLATINUM C</h3><div class="price">R300 <small>pm</small></div></div><div class="card-body"><ul><li><i class="fas fa-check"></i> Sava casket</li><li><i class="fas fa-check"></i> Fresh flowers</li><li><i class="fas fa-check"></i> Mortuary, hearse</li><li><i class="fas fa-check"></i> 3 family cars, 1 bus</li><li><i class="fas fa-check"></i> 2 tables, 1 tent, 100 chairs, 1 toilet</li><li><i class="fas fa-check"></i> Programs 100u, airtime R150</li><li><i class="fas fa-check"></i> Refreshments</li></ul><div class="benefit">13 members · 100km</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-groceries" class="bg-section">
+    <div class="container">
+      <div class="section-title">groceries & meat</div>
+      <div class="tile-grid">
+        <div class="tile"><i class="fas fa-wheat-alt"></i><h4>groceries A</h4><p>25kg maize · 10kg rice · 12.5kg flour · rama · mabele · tea · cremora · 10kg sugar · 5L oil</p></div>
+        <div class="tile"><i class="fas fa-drumstick-bite"></i><h4>meat A</h4><p>6x2kg braaipacks · 10kg red meat · veg x1</p></div>
+        <div class="tile"><i class="fas fa-basket-shopping"></i><h4>groceries B</h4><p>25kg maize · 10kg rice · 20L mabele · tea · 10kg sugar · 5L oil & juice</p></div>
+        <div class="tile"><i class="fas fa-drumstick-bite"></i><h4>meat B</h4><p>8x2kg braaipacks · 15kg red meat · veg x2</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-stillborn" class="bg-section">
+    <div class="container">
+      <div style="background: rgba(17,24,31,0.85); color: #f0e5da; padding: 2rem; border-radius: 40px; margin: 2rem 0; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between; border-left: 8px solid var(--dark-red); backdrop-filter: blur(3px);">
+        <div><i class="fas fa-baby" style="color:var(--dark-red);"></i> <strong style="font-size:1.8rem;">STILL BORN PLAN</strong> 0–4 years · cross‑border · 0‑12 months FREE</div>
+        <div><i class="fas fa-hand-holding-heart" style="color:var(--dark-red);"></i> <strong>GROUP SOCIETY</strong> 13 members · up to 100 years</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-stats" class="bg-section">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-item"><span class="stat-number">27+</span> <div>years</div></div>
+        <div class="stat-item"><span class="stat-number">13</span> <div>members core</div></div>
+        <div class="stat-item"><span class="stat-number">100km</span> <div>radius</div></div>
+        <div class="stat-item"><span class="stat-number">24/7</span> <div>support</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION: Policy Payment, Joining Form, Claim Form, Social Media -->
+  <section class="bg-section" style="background-image: url('https://images.pexels.com/photos/7317666/pexels-photo-7317666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+    <div class="container">
+      <div class="section-title">manage your policy</div>
+      
+      <!-- Payment integration -->
+      <div class="form-card">
+        <div class="form-title"><i class="fas fa-credit-card"></i> policy payment</div>
+        <p style="margin-bottom:1.5rem;">Pay your premium securely online. (Demo – no actual payment taken)</p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+          <input type="text" placeholder="Policy number" style="padding:0.8rem; border-radius:40px; border:1px solid #ccc; flex:1 1 200px;">
+          <input type="text" placeholder="Amount (e.g. 250)" style="padding:0.8rem; border-radius:40px; border:1px solid #ccc; flex:1 1 150px;">
+          <button class="btn btn-payment" onclick="alert('Demo: This would redirect to a secure payment gateway.')"><i class="fas fa-lock"></i> pay now</button>
+        </div>
+        <p style="margin-top:0.8rem; font-size:0.9rem;"><i class="fas fa-shield-alt"></i> secured by SSL</p>
+      </div>
+
+      <!-- Two columns: Joining form and Claim form -->
+      <div class="flex-row">
+        <!-- Joining form -->
+        <div class="flex-col form-card">
+          <div class="form-title"><i class="fas fa-user-plus"></i> join sava family</div>
+          <form onsubmit="event.preventDefault(); alert('Demo: Joining form submitted. We will contact you.');">
+            <div class="form-group">
+              <label>Full name *</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>ID / Passport *</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>Phone *</label>
+              <input type="tel" required>
+            </div>
+            <div class="form-group">
+              <label>Plan choice</label>
+              <select>
+                <option>Bronze (R200/pm)</option>
+                <option>Silver (R250/pm)</option>
+                <option>Platinum (R300/pm)</option>
+              </select>
+            </div>
+            <button type="submit" class="btn">submit application</button>
+          </form>
+        </div>
+
+        <!-- Claim form -->
+        <div class="flex-col form-card">
+          <div class="form-title"><i class="fas fa-file-invoice"></i> submit a claim</div>
+          <form onsubmit="event.preventDefault(); alert('Demo: Claim submitted. We will process it.');">
+            <div class="form-group">
+              <label>Policy number *</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>Deceased name *</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>Date of death *</label>
+              <input type="date" required>
+            </div>
+            <div class="form-group">
+              <label>Claim type</label>
+              <select>
+                <option>Funeral expenses</option>
+                <option>Groceries & meat</option>
+                <option>Repatriation</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Additional notes</label>
+              <textarea rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn">submit claim</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Social media links -->
+      <div style="text-align:center; margin: 2rem 0;">
+        <div class="form-title" style="border-bottom:none;">follow us</div>
+        <div class="social-icons">
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact row (existing) -->
+  <div class="contact-row" id="contact" style="margin-top:0; border-radius:0;">
+    <div class="contact-item"><i class="fas fa-phone-alt"></i><h4>call us</h4><p>086 117 6925<br>012 706 0034</p></div>
+    <div class="contact-item"><i class="fas fa-clock"></i><h4>work hours</h4><div style="display: flex; gap: 2rem;"><div>Mon-Fri 8-17<br>Sat 8-13</div><div>Sun 8-13<br>Public 8-13</div></div><p><i class="fas fa-headset"></i> call centre 24HRS</p></div>
+    <div class="contact-item"><i class="fas fa-map-pin"></i><h4>Winterveld</h4><p>123 Winterveld Road<br>Winterveld, 0198</p><p><i class="fas fa-envelope"></i> info@savafunerals.co.za</p></div>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-copyright">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+      <span>© 2025 SAVA FUNERALS (Winterveld) – all rights reserved</span>
+      <span><i class="fas fa-shield-alt" style="color:var(--dark-red);"></i> authorised financial services provider (concept)</span>
+    </div>
+    <div style="margin-top:0.8rem;">Honouring lives, celebrating legacies · T’s & C’s apply</div>
+  </div>
+
+  <!-- Slideshow script -->
+  <script>
+    const funeralImages = [
+      'https://images.pexels.com/photos/7317916/pexels-photo-7317916.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/8964078/pexels-photo-8964078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/3648309/pexels-photo-3648309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/7121497/pexels-photo-7121497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/7317666/pexels-photo-7317666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    ];
+    let currentIndex = 0;
+    const slideshowElement = document.getElementById('slideshowBg');
+    function changeSlide() {
+      slideshowElement.style.backgroundImage = `url('${funeralImages[currentIndex]}')`;
+      currentIndex = (currentIndex + 1) % funeralImages.length;
+    }
+    changeSlide();
+    setInterval(changeSlide, 5000);
+  </script>
+</body>
+</html>
